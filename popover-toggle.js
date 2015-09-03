@@ -28,8 +28,9 @@
                     && !angular.element(e.target).attr('popover')
                     && angular.element(e.target).closest('[popover]').length === 0) {
 
-                    triggerHide()
-
+                    if (triggerHide) {
+                        triggerHide();
+                    }
                 }
             });
         }
@@ -52,9 +53,12 @@
                     if(newValue) {
                         openEl = $element;
                         $element.triggerHandler(POPOVER_SHOW);
+
                         triggerHide = function () {
                             $element.triggerHandler(POPOVER_HIDE);
-                            $parse($attrs.popoverToggle).assign($scope, false);
+                            $timeout(function () {
+                                $parse($attrs.popoverToggle).assign($scope, false);
+                            });
                         }
                     } else {
                         $element.triggerHandler(POPOVER_HIDE);
