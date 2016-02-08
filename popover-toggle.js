@@ -9,11 +9,11 @@
 
     var module = angular.module('popoverToggle', ['ui.bootstrap']);
 
-    module.config(['$tooltipProvider', function($tooltipProvider) {
+    module.config(['$uibTooltipProvider', function($uibTooltipProvider) {
         var triggers = {};
         triggers[POPOVER_SHOW] = POPOVER_HIDE;
 
-        $tooltipProvider.setTriggers(triggers);
+        $uibTooltipProvider.setTriggers(triggers);
     }]);
 
     module.directive('popoverClose', [function () {
